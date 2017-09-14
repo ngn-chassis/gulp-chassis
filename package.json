@@ -1,0 +1,28 @@
+{
+  "name": "@chassis/gulp",
+  "version": "1.0.0",
+  "description": "Gulp plugin for Chassis CSS Pre-Processor and UI Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngnjs/gulp-chassis.git"
+  },
+  "keywords": [
+    "gulp",
+    "chassis",
+    "preprocessor",
+    "pre-processor",
+    "framework",
+    "ui",
+    "css"
+  ],
+  "author": "Graham Butler",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/ngnjs/gulp-chassis/issues"
+  },
+  "homepage": "https://github.com/ngnjs/gulp-chassis#readme"
+}
