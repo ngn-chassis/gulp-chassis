@@ -5,3 +5,6 @@ _*
 *.log
 examples
 examples/**/*
+gulpile.js
+test
+test/**/*
