@@ -1,9 +1,7 @@
+const chassis = require('@chassis/core')
 const gutil = require('gulp-util')
 const through = require('through2')
 const postcss = require('postcss')
-
-// TODO: update chassis filepath once it is available as a node-module
-const chassis = require('/Users/graham/Projects/chassis')
 
 module.exports = function (cfg) {
 	cfg = cfg || {}

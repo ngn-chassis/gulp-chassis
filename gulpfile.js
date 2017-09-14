@@ -1,11 +1,14 @@
 const chassis = require('./index.js')
 const gulp = require('gulp')
 const del = require('del')
+const path = require('path')
 const fs = require('fs-extra')
 
 gulp.task('css', () => {
   return gulp.src('./test/main.css')
-    .pipe(chassis())
+    .pipe(chassis({
+      theme: path.resolve('./test/theme.css')
+    }))
     .pipe(gulp.dest('./test/output'))
 })
 
