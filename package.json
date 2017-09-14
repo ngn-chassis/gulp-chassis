@@ -24,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/ngnjs/gulp-chassis/issues"
   },
-  "homepage": "https://github.com/ngnjs/gulp-chassis#readme"
+  "homepage": "https://github.com/ngnjs/gulp-chassis#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.8",
+    "postcss": "^6.0.11",
+    "through2": "^2.0.3"
+  }
 }
