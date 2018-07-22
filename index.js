@@ -33,6 +33,6 @@ module.exports = function (cfg) {
 
 		  file.contents = new Buffer(processed)
       cb(null, file)
-		})
+		}, file.path)
 	})
 }
