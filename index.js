@@ -9,7 +9,7 @@ module.exports = function (cfg) {
 	cfg = cfg || {}
 
 	let chassis = new Chassis(cfg)
-	
+
 	return through.obj(function (file, enc, cb) {
 		let slugs = file.relative.split('/')
 		let filename = path.basename(file.relative)
@@ -26,7 +26,7 @@ module.exports = function (cfg) {
 		if (file.isStream()) {
 			return cb(new gutil.PluginError('gulp-chassis', 'Streaming is not supported!'))
 		}
-
+		console.log(chassis);
 		chassis.process(file.contents, (err, processed) => {
 			let { settings } = chassis
 
