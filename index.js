@@ -1,37 +1,56 @@
-const chassis = require('@chassis/core')
-const gutil = require('gulp-util')
 const through = require('through2')
-const postcss = require('postcss')
+const path = require('path')
+const fs = require('fs-extra')
+const gutil = require('gulp-util')
+
+const Chassis = require('@chassis/core')
 
 module.exports = function (cfg) {
 	cfg = cfg || {}
 
-  let proc = postcss([chassis(cfg)])
+	let chassis = new Chassis(cfg)
 
-	return through.obj((file, enc, cb) => {
-		let filename = file.relative.split('/').pop()
-		
+	return through.obj(function (file, enc, cb) {
+		let slugs = file.relative.split('/')
+		let filename = path.basename(file.relative)
+		let filepath = slugs.slice(0, slugs.length - 1).join('/')
+
 		if (filename.startsWith('_')) {
-			cb(null)
-			return
+			return cb(null)
 		}
-		
+
 		if (file.isNull()) {
-			cb(null, file)
-			return
+			return cb(null, file)
 		}
 
 		if (file.isStream()) {
-			cb(new gutil.PluginError('gulp-chassis', 'Streaming is not supported!'))
-			return
+			return cb(new gutil.PluginError('gulp-chassis', 'Streaming is not supported!'))
 		}
+		console.log(chassis);
+		chassis.process(file.contents, (err, processed) => {
+			let { settings } = chassis
 
-    proc.process(file.contents).then((res) => {
-      file.contents = new Buffer(res.css)
-      cb(null, file)
-    }, (error) => {
-			console.error(error)
-			this.emit('error', new gutil.PluginError('gulp-chassis', 'Error processing CSS'))
-		})
+			if (err) {
+				return cb(err)
+			}
+
+			if (settings.minify) {
+				let minified = chassis.minify(processed, settings.sourceMap)
+
+				if (settings.sourceMap) {
+					if (settings.sourceMapPath) {
+						fs.outputFile(path.join(settings.sourceMapPath, `${file.relative}.map`), new Buffer(minified.sourceMap.toString()), err => err && console.error(err))
+					} else {
+						return cb(new gutil.PluginError('gulp-chassis', 'No source map path specified! Please add a "sourceMapPath" property to your Chassis configuration object.'))
+					}
+				}
+
+				processed = minified.styles
+			}
+
+		  file.contents = new Buffer(processed)
+      return cb(null, file)
+
+		}, file.path)
 	})
 }
