@@ -1,6 +1,6 @@
 {
   "name": "@chassis/gulp",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Gulp plugin for Chassis CSS Pre-Processor and UI Framework",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/ngnjs/gulp-chassis#readme",
   "dependencies": {
-    "@chassis/core": "^2.0.1",
+    "@chassis/core": "latest",
     "fs-extra": "^7.0.0",
     "gulp-util": "^3.0.8",
     "postcss": "^6.0.23",
