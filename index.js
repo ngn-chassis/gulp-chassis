@@ -34,21 +34,15 @@ module.exports = function (cfg) {
 				return cb(err)
 			}
 
-			if (settings.minify) {
-				let minified = chassis.minify(processed, settings.sourceMap)
-
-				if (settings.sourceMap) {
-					if (settings.sourceMapPath) {
-						fs.outputFile(path.join(settings.sourceMapPath, `${file.relative}.map`), new Buffer(minified.sourceMap.toString()), err => err && console.error(err))
-					} else {
-						return cb(new gutil.PluginError('gulp-chassis', 'No source map path specified! Please add a "sourceMapPath" property to your Chassis configuration object.'))
-					}
+			if (settings.minify && settings.sourceMap) {
+				if (!settings.sourceMapPath) {
+					return cb(new gutil.PluginError('gulp-chassis', 'No source map path specified! Please add a "sourceMapPath" property to your Chassis configuration object.'))
 				}
 
-				processed = minified.styles
+				fs.outputFile(path.join(settings.sourceMapPath, `${file.relative}.map`), new Buffer(processed.sourceMap), err => err && console.error(err))
 			}
 
-		  file.contents = new Buffer(processed)
+		  file.contents = new Buffer(processed.css)
       return cb(null, file)
 
 		}, file.path)
