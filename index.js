@@ -11,14 +11,6 @@ module.exports = function (cfg) {
 	let chassis = new Chassis(cfg)
 
 	return through.obj(function (file, enc, cb) {
-		let slugs = file.relative.split('/')
-		let filename = path.basename(file.relative)
-		let filepath = slugs.slice(0, slugs.length - 1).join('/')
-
-		if (filename.startsWith('_')) {
-			return cb(null)
-		}
-
 		if (file.isNull()) {
 			return cb(null, file)
 		}
@@ -27,7 +19,7 @@ module.exports = function (cfg) {
 			return cb(new gutil.PluginError('gulp-chassis', 'Streaming is not supported!'))
 		}
 
-		chassis.process(file.contents, (err, processed) => {
+		chassis.process(file.path, (err, processed) => {
 			let { settings } = chassis
 
 			if (err) {
@@ -42,7 +34,7 @@ module.exports = function (cfg) {
 				fs.outputFile(path.join(settings.sourceMapPath, `${file.relative}.map`), new Buffer(processed.sourceMap), err => err && console.error(err))
 			}
 
-		  file.contents = new Buffer(processed.css)
+		  file.contents = new Buffer.from(processed.css)
       return cb(null, file)
 
 		}, file.path)
