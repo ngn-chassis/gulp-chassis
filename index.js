@@ -19,6 +19,10 @@ module.exports = function (cfg) {
 			return cb(new gutil.PluginError('gulp-chassis', 'Streaming is not supported!'))
 		}
 
+		if (path.basename(file.path).startsWith('_')) {
+      return cb()
+    }
+
 		chassis.process(file.path, (err, processed) => {
 			let { settings } = chassis
 
