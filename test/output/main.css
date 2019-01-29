@@ -1699,7 +1699,7 @@ html.chassis {
 .chassis input[type="search"], .chassis input[type="tel"],
 .chassis input[type="text"], .chassis input[type="time"],
 .chassis input[type="url"], .chassis input[type="week"], .chassis textarea,
-.chassis chassis-datalist {
+.chassis author-datalist {
     background: transparent none repeat 0% 0% / auto auto padding-box border-box scroll;
     border: medium none currentColor;
     border-radius: 0;
@@ -1728,8 +1728,9 @@ html.chassis {
     word-spacing: normal;
 }
 
-.chassis table, .chassis chassis-overlay, .chassis chassis-modal,
-.chassis chassis-control {
+.chassis table, .chassis author-data-table, .chassis author-overlay,
+.chassis author-modal, .chassis author-control, .chassis author-layout-cell,
+.chassis author-layout {
     background: transparent none repeat 0% 0% / auto auto padding-box border-box scroll;
     border: medium none currentColor;
     border-radius: 0;
@@ -1826,14 +1827,30 @@ html.chassis {
             transform: translateX(.4293858394957214em);
 }
 
-.chassis a.button.pill {
-    padding-left: 1.618033988749895em;
-    padding-right: 1.618033988749895em;
-    border-radius: 1.3827882373436318em;
-}
-
 .chassis a.button:disabled {
     pointer-events: none;
+}
+
+.chassis author-data-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.chassis author-data-table th, .chassis author-data-table td {
+    overflow: hidden;
+    padding-top: .6360098247570346em;
+    padding-right: .9823784767414218em;
+    padding-bottom: .6360098247570346em;
+    padding-left: .9823784767414218em;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+
+.chassis author-data-table caption {
+    text-align: left;
 }
 
 .chassis input[type="date"], .chassis input[type="datetime-local"],
@@ -1882,183 +1899,141 @@ html.chassis {
     pointer-events: none;
 }
 
-.chassis chassis-optgroup:disabled {
+.chassis author-optgroup:disabled {
     pointer-events: none;
 }
 
-.chassis chassis-option:disabled {
+.chassis author-option:disabled, .chassis author-option[disabled] {
     pointer-events: none;
 }
 
-.chassis chassis-select {
-    position: relative;
-    flex-direction: column;
-    vertical-align: middle;
-    outline: none;
-    cursor: pointer;
+.chassis author-select {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
 }
 
-.chassis chassis-select chassis-selected-option {
+.chassis author-select author-selected-options {
     padding-top: .6360098247570346em;
     padding-right: .9823784767414218em;
     padding-bottom: .6360098247570346em;
     padding-left: .9823784767414218em;
 }
 
-.chassis chassis-select chassis-options {
+.chassis author-select author-options {
     overflow: auto;
 }
 
-.chassis chassis-select chassis-option,
-.chassis chassis-select chassis-optgroup-label {
+.chassis author-select author-option,
+.chassis author-select author-optgroup-label {
     padding-top: .6360098247570346em;
     padding-right: .9823784767414218em;
     padding-bottom: .6360098247570346em;
     padding-left: .9823784767414218em;
 }
 
-.chassis chassis-select chassis-selected-option svg.icon,
-.chassis chassis-select chassis-option svg.icon {
+.chassis author-select author-selected-options svg.icon,
+.chassis author-select author-option svg.icon {
     -webkit-transform: translateX(-0.4293858394957214em);
             transform: translateX(-0.4293858394957214em);
 }
 
-.chassis chassis-select.pill {
-    border-radius: 1.3827882373436318em;
-}
-
-.chassis chassis-select.pill chassis-selected-option {
-    border-radius: 1.3827882373436318em;
-}
-
-.chassis chassis-select.pill chassis-options {
-    border-radius: 0 0 1.3827882373436318em 1.3827882373436318em;
-}
-
-.chassis chassis-select.pill chassis-selected-option,
-.chassis chassis-select.pill chassis-option,
-.chassis chassis-select.pill chassis-optgroup-label {
-    padding-right: 1.618033988749895em;
-    padding-left: 1.618033988749895em;
-}
-
-.chassis chassis-select.disabled {
+.chassis author-select.disabled {
     pointer-events: none;
 }
 
-.chassis chassis-select[open] chassis-options {
-    margin-bottom: 1em;
-}
-
-.chassis chassis-select[open].pill,
-.chassis chassis-select[open].pill chassis-selected-option {
-    border-radius: 1.3827882373436318em 1.3827882373436318em 0 0;
-}
-
-.chassis chassis-datalist {
-    position: relative;
-    flex-direction: column;
-    vertical-align: middle;
-    outline: none;
-    cursor: pointer;
+.chassis author-datalist {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
 }
 
-.chassis chassis-datalist chassis-options {
+.chassis author-datalist author-options {
     overflow: auto;
 }
 
-.chassis chassis-datalist chassis-option {
+.chassis author-datalist author-option {
     padding-top: .6360098247570346em;
     padding-right: .9823784767414218em;
     padding-bottom: .6360098247570346em;
     padding-left: .9823784767414218em;
 }
 
-.chassis chassis-datalist chassis-option svg.icon {
+.chassis author-datalist author-option svg.icon {
     -webkit-transform: translateX(-0.4293858394957214em);
             transform: translateX(-0.4293858394957214em);
 }
 
-.chassis chassis-datalist.pill {
+.chassis author-datalist.pill {
     border-radius: 1.3827882373436318em;
 }
 
-.chassis chassis-datalist.pill chassis-options {
+.chassis author-datalist.pill author-options {
     border-radius: 0 0 1.3827882373436318em 1.3827882373436318em;
 }
 
-.chassis chassis-datalist.pill chassis-option {
+.chassis author-datalist.pill author-option {
     padding-right: 1.618033988749895em;
     padding-left: 1.618033988749895em;
 }
 
-.chassis chassis-datalist:disabled {
+.chassis author-datalist:disabled {
     pointer-events: none;
 }
 
-.chassis chassis-datalist[open] chassis-options {
-    margin-bottom: 1em;
-}
-
-.chassis chassis-datalist[open].pill {
+.chassis author-datalist[open].pill {
     border-radius: 1.3827882373436318em 1.3827882373436318em 0 0;
 }
 
-.chassis chassis-control[type="field"], .chassis chassis-control[type="select"] {
+.chassis author-control[type="field"], .chassis author-control[type="select"] {
     margin-bottom: 1.3827882373436318em;
 }
 
-.chassis chassis-control[type="field"] label {
+.chassis author-control[type="field"] label {
     display: inline-block;
 }
 
-.chassis chassis-control[type="field"] input {
+.chassis author-control[type="field"] input {
     flex: 1 1 auto;
     width: 100%;
     max-width: 100%;
     margin: 0;
 }
 
-.chassis chassis-control[type="field"] label + input {
+.chassis author-control[type="field"] label + input {
     margin-top: .6360098247570346em;
 }
 
-.chassis chassis-control[type="field"] textarea {
+.chassis author-control[type="field"] textarea {
     flex: 1 1 auto;
     width: 100%;
     max-width: 100%;
     margin: 0;
 }
 
-.chassis chassis-control[type="toggle"] {
+.chassis author-control[type="toggle"] {
     display: flex;
     align-items: baseline;
 }
 
-.chassis chassis-control[type="toggle"] input {
+.chassis author-control[type="toggle"] input {
     display: inline-block;
     margin: 0 .32410192262448956em 0 0;
 }
 
-.chassis chassis-control[type="field"] textarea,
-.chassis chassis-control[type="select"] chassis-select {
+.chassis author-control[type="field"] textarea,
+.chassis author-control[type="select"] author-select {
     margin: .6360098247570346em 0 0;
 }
 
-.chassis chassis-control[type="field"] textarea,
-.chassis chassis-control[type="select"] select,
-.chassis chassis-control[type="select"] select[multiple] {
+.chassis author-control[type="field"] textarea,
+.chassis author-control[type="select"] select,
+.chassis author-control[type="select"] select[multiple] {
     vertical-align: top;
 }
 
-.chassis chassis-control.disabled {
+.chassis author-control.disabled {
     pointer-events: none;
 }
