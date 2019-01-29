@@ -1,6 +1,6 @@
 {
   "name": "@chassis/gulp",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Gulp plugin for Chassis CSS Pre-Processor and UI Framework",
   "main": "index.js",
   "scripts": {
